@@ -22,16 +22,23 @@
     <meta name="twitter:description" content="Technologist, founder, and developer advocate bridging the gap between complex emerging technologies and human-centric solutions.">
     <meta name="twitter:image" content="https://dharach.com/matt.jpg">
 
-    <!-- Fonts -->
+    <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
     
-    <!-- Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Preload LCP image -->
+    <link rel="preload" as="image" href="matt.webp" type="image/webp">
+    
+    <!-- Fonts - non-render-blocking with swap -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Outfit:wght@300;400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Outfit:wght@300;400;500;700&display=swap"></noscript>
     
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Icons - deferred loading -->
+    <script defer src="https://unpkg.com/lucide@0.462.0/dist/umd/lucide.min.js"></script>
     
     <!-- Analytics -->
     <script defer src="https://cloud.umami.is/script.js" data-website-id="4079b77a-496b-45d8-9190-ff413edb9d72"></script>
@@ -109,7 +116,10 @@
             <div class="hero-image fade-in-scale">
                 <div class="image-wrapper">
                     <div class="image-glow"></div>
-                    <img src="matt.jpg" alt="Matt Hamilton" class="profile-img">
+                    <picture>
+                        <source srcset="matt.webp" type="image/webp">
+                        <img src="matt.jpg" alt="Matt Hamilton" class="profile-img" width="380" height="253" fetchpriority="high">
+                    </picture>
                 </div>
             </div>
         </div>
@@ -411,7 +421,20 @@
 
     <script src="script.js"></script>
     <script>
-        lucide.createIcons();
+        // Initialize Lucide icons when script loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+        // Fallback if DOMContentLoaded already fired
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            setTimeout(function() {
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            }, 1);
+        }
     </script>
 </body>
 </html>
