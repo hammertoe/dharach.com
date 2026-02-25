@@ -1,0 +1,67 @@
+.contact-hero {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+}
+
+.contact-wrap {
+    max-width: 760px;
+}
+
+.contact-wrap h1 {
+    font-family: "Georgia", serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+}
+
+.contact-wrap p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.contact-links-section {
+    padding-top: 1rem;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.contact-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background-color: var(--bg-alt);
+    text-decoration: none;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.contact-card:hover {
+    border-color: rgba(46, 139, 124, 0.45);
+    transform: translateY(-2px);
+}
+
+.contact-label {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.contact-value {
+    color: var(--text-main);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+@media (max-width: 720px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}

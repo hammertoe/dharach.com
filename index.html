@@ -1,440 +1,319 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matt Hamilton | Founder & Developer Advocate</title>
-    <meta name="description" content="Technologist, founder, and developer advocate bridging the gap between complex emerging technologies and human-centric solutions. Expert in AI, Blockchain, and Digital Transformation.">
-    <meta name="keywords" content="Matt Hamilton, Developer Advocate, Tech Consulting, Barbados, AI, Blockchain, Web Development, Founder">
-    <meta name="author" content="Matt Hamilton">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Matt Hamilton | Founder & Developer Advocate">
-    <meta property="og:description" content="Technologist, founder, and developer advocate bridging the gap between complex emerging technologies and human-centric solutions.">
-    <meta property="og:url" content="https://dharach.com">
+    <title>Matt Hamilton | Civic Tech and Usable AI in Barbados</title>
+    <meta name="description" content="Matt Hamilton builds civic-tech and AI systems that ship: parliamentary search, island-wide product discovery, and digital public infrastructure from Barbados.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://dharach.com/">
+
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://dharach.com/matt.jpg">
-    
-    <!-- Twitter -->
+    <meta property="og:site_name" content="Dharach">
+    <meta property="og:locale" content="en_BB">
+    <meta property="og:title" content="Matt Hamilton | Civic Tech and Usable AI in Barbados">
+    <meta property="og:description" content="Live civic-tech and AI systems built in Barbados, with proven results and clear public impact.">
+    <meta property="og:url" content="https://dharach.com/">
+    <meta property="og:image" content="https://dharach.com/matt-speaking.jpg">
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:creator" content="@hammertoe">
-    <meta name="twitter:title" content="Matt Hamilton | Founder & Developer Advocate">
-    <meta name="twitter:description" content="Technologist, founder, and developer advocate bridging the gap between complex emerging technologies and human-centric solutions.">
-    <meta name="twitter:image" content="https://dharach.com/matt.jpg">
+    <meta name="twitter:title" content="Matt Hamilton | Civic Tech and Usable AI in Barbados">
+    <meta name="twitter:description" content="Live civic-tech and AI systems built in Barbados, with proven results and clear public impact.">
+    <meta name="twitter:image" content="https://dharach.com/matt-speaking.jpg">
 
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://unpkg.com" crossorigin>
-    
-    <!-- Preload LCP image -->
-    <link rel="preload" as="image" href="matt.webp" type="image/webp">
-    
-    <!-- Fonts - non-render-blocking with swap -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Outfit:wght@300;400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Outfit:wght@300;400;500;700&display=swap"></noscript>
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- Icons - deferred loading -->
-    <script defer src="https://unpkg.com/lucide@0.462.0/dist/umd/lucide.min.js"></script>
-    
-    <!-- Analytics -->
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="4079b77a-496b-45d8-9190-ff413edb9d72"></script>
-    
-    <!-- JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Matt Hamilton",
-      "url": "https://dharach.com",
-      "image": "https://dharach.com/matt.jpg",
-      "jobTitle": "Founder & Developer Advocate",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Dharach"
-      },
-      "sameAs": [
-        "https://twitter.com/hammertoe",
-        "https://linkedin.com/in/matthamilton77/",
-        "https://github.com/hammertoe",
-        "https://hammertoe.io"
-      ],
-      "description": "Technologist, founder, and developer advocate passionate about AI, blockchain, and community impact."
+      "@graph": [
+        {
+          "@type": "Person",
+          "name": "Matt Hamilton",
+          "url": "https://dharach.com/",
+          "jobTitle": "Full-Stack Developer",
+          "sameAs": [
+            "https://twitter.com/hammertoe",
+            "https://linkedin.com/in/matthamilton77/",
+            "https://github.com/hammertoe"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "name": "Dharach",
+          "url": "https://dharach.com/"
+        }
+      ]
     }
     </script>
+
+    <link rel="stylesheet" href="site-shared.css">
+
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav id="navbar">
-        <div class="container nav-container">
-            <a href="/" class="logo">Matt Hamilton</a>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#projects">Work</a>
-                <a href="#experience">Experience</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <!-- Mobile Menu Button -->
-            <button class="mobile-menu-btn" aria-label="Menu">
-                <i data-lucide="menu"></i>
-            </button>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">Matt Hamilton</a>
+        <div class="nav-links">
+            <a href="#whats-running">Projects</a>
+            <a href="#thesis">Thesis</a>
+            <a href="#about">About</a>
+            <a href="contact.html">Contact</a>
         </div>
     </nav>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu">
-        <a href="#about">About</a>
-        <a href="#projects">Work</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
-    </div>
-
     <!-- Hero Section -->
-    <section class="hero mesh-gradient">
-        <div class="grid-overlay"></div>
-        <div class="container hero-content">
-            <div class="hero-text fade-in-up">
-                <h2 class="hero-subtitle">Technologist & Founder</h2>
-                <h1 class="hero-title">Building the <span class="text-gradient">Future</span> of Digital Experiences</h1>
-                <p class="hero-desc">
-                    I help organizations bridge the gap between complex emerging technologies and human-centric solutions. 
-                    Specializing in AI, Blockchain, and Developer Advocacy.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">
-                        Work with me <i data-lucide="arrow-right"></i>
-                    </a>
-                    <a href="#projects" class="btn btn-secondary">
-                        View Projects
-                    </a>
+    <header class="hero">
+        <div class="hero-content">
+            <span class="eyebrow">Dharach - Applied AI</span>
+            
+            <h1>AI at human scale.<br><span class="highlight">Proven in Barbados. Built for the Caribbean.</span></h1>
+            
+            <p class="subtitle">Small islands solve problems the rest of the world is still debating. Instead of importing Silicon Valley tech-bro abstractions, I build and prove national-scale AI systems in Barbados, creating live blueprints ready to solve real, everyday frictions across the wider region.</p>
+
+            <div class="hero-ctas">
+                <a href="contact.html" class="cta-button">
+                    Let's talk
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H7l-4 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path></svg>
+                </a>
+                <a href="#whats-running" class="cta-button secondary">
+                    See what's running
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="hero-image-container">
+            <!-- Replace this URL with your photo -->
+            <img src="matt-speaking.jpg" alt="Matt speaking">
+        </div>
+    </header>
+
+    <!-- Projects Section -->
+    <section id="whats-running" class="section bg-white">
+        <div class="container">
+            
+            <div class="projects-header-flex">
+                <div class="section-header">
+                    <span class="eyebrow">What's Running Right Now</span>
+                    <h2>Live systems, not slide decks</h2>
+                    <p>Every project below is in production, serving real users, processing real data, and proving that small islands can lead on civic technology.</p>
+                </div>
+                <div class="swipe-hint">
+                    Drag or swipe to explore 
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                 </div>
             </div>
-            <div class="hero-image fade-in-scale">
-                <div class="image-wrapper">
-                    <div class="image-glow"></div>
-                    <picture>
-                        <source srcset="matt.webp" type="image/webp">
-                        <img src="matt.jpg" alt="Matt Hamilton" class="profile-img" width="380" height="253" fetchpriority="high">
-                    </picture>
+
+        </div>
+
+        <!-- The wrapper breaks out of the container to allow edge-to-edge scrolling -->
+        <div class="carousel-wrapper">
+            <div class="project-carousel" id="projectCarousel">
+                
+                <!-- Project: Yuh Hear Dem -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Replace src with your actual portrait screenshot -->
+                        <img src="yuhheardem-screenshot.png" alt="Yuh Hear Dem UI Screenshot">
+                    </div>
+                    <div class="project-content">
+                        <div class="status-badge"><div class="status-dot"></div> Live</div>
+                        <h3>Yuh Hear Dem</h3>
+                        <p>AI-powered parliamentary search with source-linked provenance. Every claim links back to the original video evidence.</p>
+                        <div class="card-footer">
+                            <span class="tag-category">200+ Parliamentary videos</span>
+                            <span class="tag-category">105,000+ sentences transcribed</span>
+                            <span class="tag-category">90,000+ entities discovered</span>
+                            <span class="tag-category">209,000+ relationships between entities</span>
+                            <a href="https://yuhheardem.com" target="_blank" rel="noopener" class="project-site-link">🔗 Go to yuhheardem.com</a>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Project: Yuh Gettin' Tru? -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Replace src with your actual portrait screenshot -->
+                        <img src="yuhgettintru-screenshot.png" alt="Yuh Gettin' Tru UI Screenshot">
+                    </div>
+                    <div class="project-content">
+                        <div class="status-badge"><div class="status-dot"></div> Live</div>
+                        <h3>Yuh Gettin' Tru?</h3>
+                        <p>Island-wide product search across 100+ retailers. Vector search + LLM reranking to find what you need locally.</p>
+                        <div class="card-footer">
+                            <span class="tag-category">340,000+ products searched</span>
+                            <span class="tag-category">100+ stores</span>
+                            <span class="tag-category">1,800+ Instagram vendors</span>
+                            <span class="tag-category">1,000+ searches / day</span>
+                            <span class="tag-category">22% click-through rate</span>
+                            <a href="https://yuhgettintru.com" target="_blank" rel="noopener" class="project-site-link">🔗 Go to yuhgettintru.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project: We Outside 246 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Replace src with your actual portrait screenshot -->
+                        <img src="weoutside246-screenshot.png" alt="We Outside 246 UI Screenshot">
+                    </div>
+                    <div class="project-content">
+                        <div class="status-badge"><div class="status-dot"></div> Live</div>
+                        <h3>We Outside 246</h3>
+                        <p>Cultural events discovery for Barbados. Automated daily feed refresh with auto-categorisation from social signals.</p>
+                        <div class="card-footer">
+                            <span class="tag-category">40,000+ Instagram posts scanned</span>
+                            <span class="tag-category">6,500+ Event posters detected</span>
+                            <span class="tag-category">1,600+ Unique events</span>
+                            <a href="https://weoutside246.com" target="_blank" rel="noopener" class="project-site-link">🔗 Go to weoutside246.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project: Talk to Tali -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Replace src with your actual portrait screenshot -->
+                        <img src="talktotali-screenshot.png" alt="Talk to Tali WhatsApp Screenshot">
+                    </div>
+                    <div class="project-content">
+                        <div class="status-badge"><div class="status-dot"></div> Live</div>
+                        <h3>Talk to Tali</h3>
+                        <p>A shame-free WhatsApp-based task manager for ADHD. Context-aware planning that adapts to energy levels without guilt mechanics.</p>
+                        <div class="card-footer">
+                            <span class="tag-category">5,000+ messages</span>
+                            <span class="tag-category">1,200+ tasks</span>
+                            <span class="tag-category">40+ active users</span>
+                            <a href="https://talktotali.ai" target="_blank" rel="noopener" class="project-site-link">🔗 Go to talktotali.ai</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project: alpha.gov.bb (Moved to Last) -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <!-- Replace src with your actual portrait screenshot -->
+                        <img src="alphagovbb-screenshot.png" alt="alpha.gov.bb UI Screenshot">
+                    </div>
+                    <div class="project-content">
+                        <div class="status-badge"><div class="status-dot"></div> Live</div>
+                        <h3>alpha.gov.bb</h3>
+                        <p>Government services as a service you can actually use. An alpha-stage portal designed to test ideas early and iterate with citizen feedback.</p>
+                        <div class="card-footer">
+                            <span class="tag-category">I was part of the alpha.gov.bb launch team with GovTech Barbados (contract), helping bootstrap the programme and shipping full-stack work on the forms system.</span>
+                            <a href="https://alpha.gov.bb" target="_blank" rel="noopener" class="project-site-link">🔗 Go to alpha.gov.bb</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section cta-strip">
+        <div class="container">
+            <div class="cta-panel">
+                <div>
+                    <h3>Want to ship something real?</h3>
+                    <p>I'm available for civic-tech builds, AI products, and advisory work across the Caribbean.</p>
+                </div>
+                <a href="contact.html" class="cta-button">Get in touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Thesis Section -->
+    <section id="thesis" class="section">
+        <div class="container split-layout">
+            <div class="split-sidebar">
+                <h3>The Thesis</h3>
+            </div>
+            <div class="split-content">
+                <h2>Why Barbados. Why islands.</h2>
+                <p>Barbados has 280,000 people, one parliament, one set of border controls, and the ability to deploy end-to-end nationally. When I build a system here, whether it's making parliamentary debates searchable or improving how citizens find services, it doesn't sit in a pilot programme. It goes live, nationally, and serves everyone.</p>
+                
+                <p>That's the advantage of small islands: you can prototype at national scale. The feedback loop is immediate, the stakes are real, and the results are measurable. There's no "phase two". There's just shipped software doing its job.</p>
+                
+                <p>But this isn't only a Barbados story. The Caribbean is a network of small, connected nations facing shared challenges: climate resilience, transparent governance, economic diversification. What works in Barbados can travel to Trinidad, Jamaica, the Eastern Caribbean, and beyond. Small islands aren't edge cases. They're proving grounds.</p>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <div class="about-wrapper fade-in-up">
-                <h2 class="section-title text-center">About Me</h2>
-                <div class="about-text">
-                    <p>
-                        <span class="highlight">Matt Hamilton</span> is a technologist, founder, and developer advocate passionate about the intersection of artificial intelligence, blockchain, and community impact. With a global career spanning roles at major tech organizations including <span class="text-primary">IBM</span>, <span class="text-primary">Ripple</span>, and the <span class="text-primary">Arbitrum Foundation</span>, Matt has spent years acting as the "voice of the developer," helping to shape tools and experiences that empower creators worldwide to build on decentralized and intelligent systems.
-                    </p>
-                    <p>
-                        Currently based in <span class="text-white">Barbados</span>, having moved from the UK in August 2021 via the <strong class="text-white">Welcome Stamp program</strong>, Matt is leveraging his expertise to drive digital transformation and accessibility within the local landscape. He was previously part of the launch team for the Barbados Government's <strong class="text-white">alpha.gov.bb</strong> portal, working to make government services clearer and faster for the public.
-                    </p>
-                    <p>
-                        In recognition of his contributions to the island, Matt was honored with the <strong class="text-white">Innovation Award</strong> at the <strong class="text-white">2025 Barbados Labour Party Awards</strong>. The award citation highlighted how his work "exemplifies the power of technology to create meaningful social impact" by harnessing emerging technologies to increase transparency and enhance daily life. This recognition celebrated his suite of AI-powered platforms, including <strong class="text-white">Yuh Hear Dem</strong>, which makes parliamentary records searchable for citizens; <strong class="text-white">We Outside 246</strong>, which aggregates social media data to help locals discover island events; and his most recent launch, <strong class="text-white">Yuh Gettin Tru?</strong>. The latter serves as the largest unified shopping search in the Caribbean, applying AI to hardware store inventories to help residents and visitors find products using natural language.
-                    </p>
-                    <p>
-                        Beyond his local initiatives, Matt is a recognized speaker and educator in the global tech community. Whether co-creating award-winning solutions like <strong class="text-white">Choirless</strong> for remote musicians or developing <strong class="text-white">Untangle</strong>, a context-aware task manager for neurodiverse minds, his work consistently bridges the gap between complex emerging technologies and human-centric solutions. He brings a unique blend of technical depth and creative problem-solving to every project, championing innovation that is both powerful and inclusive.
-                    </p>
+    <section id="about" class="section bg-white">
+        <div class="container split-layout">
+            <div class="split-sidebar">
+                <h3>About</h3>
+            </div>
+            <div class="split-content">
+                <h2>Matt Hamilton</h2>
+                <p>I'm a technologist, founder, and developer advocate focused on the intersection of AI, blockchain, and community impact. Across roles at places like IBM, Ripple, Protocol Labs, and the Arbitrum Foundation, I've spent years as the voice of the developer, shaping tools and experiences that help builders ship.</p>
+                
+                <p>I'm based in Barbados (moved from the UK in August 2021 via the Welcome Stamp programme), where I'm applying that same build-and-iterate mindset to public-facing systems. I was part of the launch team for the Barbados Government's alpha.gov.bb portal, working to make government services clearer and faster for the public.</p>
+                
+                <p>In 2025 I received the Innovation Award at the Barbados Labour Party Awards for work using emerging tech to increase transparency and improve daily life on the island, including Yuh Hear Dem (making parliamentary records searchable), We Outside 246 (events discovery), and Yuh Gettin' Tru? (island-wide shopping search).</p>
+
+                <div class="skills-list">
+                    <span class="skill-tag">Software</span>
+                    <span class="skill-tag">Developer Advocacy</span>
+                    <span class="skill-tag">AI</span>
+                    <span class="skill-tag">Blockchain</span>
+                    <span class="skill-tag">Civic Tech</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section bg-darker">
-        <div class="container">
-            <div class="section-header fade-in-up">
-                <h2 class="section-title">Selected Work</h2>
-                <p class="section-subtitle">A collection of platforms and tools I've built to solve real-world problems.</p>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h4>Matt Hamilton</h4>
+                <p>Dharach - The Caribbean Lab. Building civic infrastructure in Barbados and beyond.</p>
             </div>
-
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card fade-in-up">
-                    <div class="card-header">
-                        <span class="role-tag">Founder & Lead Dev</span>
-                        <div class="card-links">
-                            <a href="https://yuhgettintru.com" target="_blank" aria-label="Visit Site"><i data-lucide="external-link"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="card-title">Yuh Gettin Tru?</h3>
-                    <p class="card-desc">The largest unified shopping search in the Caribbean. Aggregates products from 60+ local stores allowing users to search over 280,000 items instantly.</p>
-                    <div class="card-tags">
-                        <span>AI</span><span>Search</span><span>Next.js</span><span>Python</span>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card fade-in-up" style="animation-delay: 0.1s">
-                    <div class="card-header">
-                        <span class="role-tag">Founder</span>
-                        <div class="card-links">
-                            <a href="https://weoutside246.com" target="_blank" aria-label="Visit Site"><i data-lucide="external-link"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="card-title">We Outside 246</h3>
-                    <p class="card-desc">AI-powered events discovery platform for Barbados. Automatically aggregates and categorizes social events, parties, and concerts.</p>
-                    <div class="card-tags">
-                        <span>AI</span><span>Automation</span><span>Events</span>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card fade-in-up" style="animation-delay: 0.2s">
-                    <div class="card-header">
-                        <span class="role-tag">Creator</span>
-                        <div class="card-links">
-                            <a href="https://untangleapp.ai" target="_blank" aria-label="Visit Site"><i data-lucide="external-link"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="card-title">Talk to Tali (prev Untangle)</h3>
-                    <p class="card-desc">A shame-free, context-aware task manager designed specifically for neurodiverse minds (ADHD). Integrates directly into WhatsApp for frictionless capture.</p>
-                    <div class="card-tags">
-                        <span>AI</span><span>LLMs</span><span>Accessibility</span><span>Productivity</span>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-card fade-in-up" style="animation-delay: 0.3s">
-                    <div class="card-header">
-                        <span class="role-tag">Full Stack Developer</span>
-                        <div class="card-links">
-                            <a href="https://alpha.gov.bb" target="_blank" aria-label="Visit Site"><i data-lucide="external-link"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="card-title">GovTech (alpha.gov.bb)</h3>
-                    <p class="card-desc">The Government of Barbados' digital services portal. Helped re-engineer how citizens access public services with a focus on speed and clarity.</p>
-                    <div class="card-tags">
-                        <span>GovTech</span><span>Digital Transformation</span><span>UX</span>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="project-card fade-in-up" style="animation-delay: 0.4s">
-                    <div class="card-header">
-                        <span class="role-tag">Creator</span>
-                        <div class="card-links">
-                            <a href="https://yuhheardem.com" target="_blank" aria-label="Visit Site"><i data-lucide="external-link"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="card-title">Yuh Hear Dem</h3>
-                    <p class="card-desc">AI guide to Barbadian Parliament. Transcribes and analyzes parliamentary debates to make democracy more accessible to citizens.</p>
-                    <div class="card-tags">
-                        <span>AI</span><span>Civic Tech</span><span>NLP</span>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="project-card fade-in-up" style="animation-delay: 0.5s">
-                    <div class="card-header">
-                        <span class="role-tag">Co-Creator</span>
-                        <div class="card-links">
-                            <a href="https://choirless.github.io" target="_blank" aria-label="Visit Site"><i data-lucide="external-link"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="card-title">Choirless</h3>
-                    <p class="card-desc">Award-winning solution allowing remote musicians to play together asynchronously. 2nd Place winner in IBM Call for Code Global Challenge.</p>
-                    <div class="card-tags">
-                        <span>Audio Processing</span><span>Cloud</span><span>Open Source</span>
-                    </div>
-                </div>
+            <div class="footer-links">
+                <a href="https://hammertoe.io" target="_blank" rel="noopener">hammertoe.io</a>
+                <a href="#" target="_blank" rel="noopener">Twitter / X</a>
+                <a href="#" target="_blank" rel="noopener">LinkedIn</a>
             </div>
         </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="section">
-        <div class="container">
-            <div class="experience-header fade-in-up">
-                <h2 class="section-title">Experience</h2>
-                <a href="MattHamilton_CV_2026.pdf" target="_blank" class="download-cv">
-                    Download CV
-                </a>
-            </div>
-
-            <div class="timeline">
-                <div class="timeline-line"></div>
-
-                <!-- Job 1 -->
-                <div class="timeline-item fade-in-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="job-header">
-                            <h3 class="job-company">Dharach Pte. Lte</h3>
-                            <span class="job-period">May 2022 - Present</span>
-                        </div>
-                        <div class="job-role">Director</div>
-                        <p class="job-desc">Software development and consultancy, focusing on bridging the gap between complex technologies and human-centric solutions.</p>
-                    </div>
-                </div>
-
-                <!-- Job 2 -->
-                <div class="timeline-item fade-in-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="job-header">
-                            <h3 class="job-company">GovTech Barbados Ltd.</h3>
-                            <span class="job-period">Sep 2025 - Nov 2025</span>
-                        </div>
-                        <div class="job-role">Full Stack Developer</div>
-                        <p class="job-desc">Built the new alpha.gov.bb site as part of a cross-functional team. Worked across frontend and backend to deliver citizen-centric public services.</p>
-                    </div>
-                </div>
-
-                <!-- Job 3 -->
-                <div class="timeline-item fade-in-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="job-header">
-                            <h3 class="job-company">ASIMOV Protocol</h3>
-                            <span class="job-period">Mar 2025 - Nov 2025</span>
-                        </div>
-                        <div class="job-role">Head of Developer Growth and Engineering</div>
-                        <p class="job-desc">Led DevRel at the intersection of AI and structured data. Championed Positron (on-device intelligence layer) and grew the developer community for verified knowledge graphs.</p>
-                    </div>
-                </div>
-
-                <!-- Job 4 -->
-                <div class="timeline-item fade-in-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="job-header">
-                            <h3 class="job-company">The Arbitrum Foundation</h3>
-                            <span class="job-period">May 2024 - Feb 2025</span>
-                        </div>
-                        <div class="job-role">Senior DevRel</div>
-                        <p class="job-desc">Helped developers build on the leading Layer 2 network for Ethereum. Focused on L3 chains and Stylus (Rust smart contracts).</p>
-                    </div>
-                </div>
-
-                <!-- Job 5 -->
-                <div class="timeline-item fade-in-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="job-header">
-                            <h3 class="job-company">Protocol Labs</h3>
-                            <span class="job-period">Aug 2022 - May 2024</span>
-                        </div>
-                        <div class="job-role">Principal Developer Advocate</div>
-                        <p class="job-desc">Worked on Filecoin Virtual Machine (FVM) and Interplanetary Consensus (IPC), helping developers build on decentralized infrastructure.</p>
-                    </div>
-                </div>
-
-                <!-- Job 6 -->
-                <div class="timeline-item fade-in-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="job-header">
-                            <h3 class="job-company">Bittensor</h3>
-                            <span class="job-period">May 2022 - Aug 2022</span>
-                        </div>
-                        <div class="job-role">Director of Developer Relations</div>
-                        <p class="job-desc">Led early developer relations strategy for decentralized machine learning network.</p>
-                    </div>
-                </div>
-
-                <!-- Job 7 -->
-                <div class="timeline-item fade-in-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="job-header">
-                            <h3 class="job-company">Ripple</h3>
-                            <span class="job-period">Feb 2021 - Mar 2022</span>
-                        </div>
-                        <div class="job-role">Director of Developer Relations</div>
-                        <p class="job-desc">Led global DevRel strategy, managed XRP Ledger Grants ($5M+), launched Discord community, and hosted weekly developer livestreams.</p>
-                    </div>
-                </div>
-
-                <!-- Job 8 -->
-                <div class="timeline-item fade-in-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="job-header">
-                            <h3 class="job-company">IBM</h3>
-                            <span class="job-period">Mar 2018 - Feb 2021</span>
-                        </div>
-                        <div class="job-role">Developer Advocate (AI/ML)</div>
-                        <p class="job-desc">Focused on AI/ML cloud services. Hosted IBM Think! 'Hallway Track' and co-created award-winning solution 'Choirless'.</p>
-                    </div>
-                </div>
-
-                <!-- Job 9 -->
-                <div class="timeline-item fade-in-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="job-header">
-                            <h3 class="job-company">Netsight Internet Solutions</h3>
-                            <span class="job-period">2000 - Nov 2014</span>
-                        </div>
-                        <div class="job-role">Technical Director</div>
-                        <p class="job-desc">Co-founded and led technical strategy for a web development agency. Specialized in Python/Plone CMS, managed hosting infrastructure, and delivered solutions for national and international clients.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mobile-cv-btn">
-                <a href="MattHamilton_CV_2026.pdf" target="_blank" class="btn-outline">Download Full CV</a>
-            </div>
+        <div class="copyright">
+            &copy; 2026 Matt Hamilton. All rights reserved.
         </div>
-    </section>
+    </footer>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section bg-gradient-footer">
-        <div class="container text-center fade-in-up">
-            <h2 class="section-title">Let's Build Together</h2>
-            <p class="section-subtitle mb-12">
-                Interested in working together? Whether you need technical consulting, 
-                developer advocacy strategy, or a full-stack solution, I'm here to help.
-            </p>
-
-            <div class="contact-links">
-                <a href="mailto:matt@dharach.com" class="contact-item">
-                    <div class="icon-circle"><i data-lucide="mail"></i></div>
-                    <span>Email</span>
-                </a>
-                <a href="https://linkedin.com/in/matthamilton77/" target="_blank" class="contact-item">
-                    <div class="icon-circle"><i data-lucide="linkedin"></i></div>
-                    <span>LinkedIn</span>
-                </a>
-                <a href="https://twitter.com/hammertoe" target="_blank" class="contact-item">
-                    <div class="icon-circle"><i data-lucide="twitter"></i></div>
-                    <span>Twitter</span>
-                </a>
-                <a href="https://github.com/hammertoe" target="_blank" class="contact-item">
-                    <div class="icon-circle"><i data-lucide="github"></i></div>
-                    <span>GitHub</span>
-                </a>
-            </div>
-
-            <p class="copyright">&copy; 2026 Matt Hamilton. All rights reserved.</p>
-        </div>
-    </section>
-
-    <script src="script.js"></script>
+    <!-- JavaScript for Desktop Mouse Drag-to-Scroll on the Carousel -->
     <script>
-        // Initialize Lucide icons when script loads
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
+        const slider = document.getElementById('projectCarousel');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.style.scrollBehavior = 'auto'; // Remove snap effect while actively dragging
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
         });
-        // Fallback if DOMContentLoaded already fired
-        if (document.readyState === 'complete' || document.readyState === 'interactive') {
-            setTimeout(function() {
-                if (typeof lucide !== 'undefined') {
-                    lucide.createIcons();
-                }
-            }, 1);
-        }
+
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.style.scrollBehavior = 'smooth'; // Restore snap behavior
+        });
+
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.style.scrollBehavior = 'smooth'; // Restore snap behavior
+        });
+
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll-fast multiplier
+            slider.scrollLeft = scrollLeft - walk;
+        });
     </script>
 </body>
 </html>
