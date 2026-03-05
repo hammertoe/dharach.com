@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /me.html
 
 Sitemap: https://dharach.com/sitemap.xml
