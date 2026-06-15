@@ -1,0 +1,155 @@
+.consulting-hero {
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+}
+
+.consulting-hero-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.9fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+.consulting-hero-copy h1 {
+    font-family: "Georgia", serif;
+    font-size: clamp(2.3rem, 5vw, 3.8rem);
+    line-height: 1.08;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+.consulting-intro {
+    font-size: 1.15rem;
+}
+
+.consulting-highlight-card,
+.consulting-panel,
+.consulting-offer-card,
+.proof-card,
+.faq-item {
+    background-color: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.consulting-highlight-card {
+    padding: 1.5rem;
+    background: linear-gradient(180deg, rgba(46, 139, 124, 0.08), rgba(255, 255, 255, 0));
+}
+
+.consulting-card-label {
+    display: inline-block;
+    margin-bottom: 0.9rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.consulting-highlight-card h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.consulting-grid-two-up {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.consulting-panel {
+    padding: 1.75rem;
+}
+
+.consulting-list {
+    list-style: none;
+    display: grid;
+    gap: 0.9rem;
+}
+
+.consulting-list li {
+    position: relative;
+    padding-left: 1.25rem;
+    color: var(--text-muted);
+}
+
+.consulting-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.72rem;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 999px;
+    background-color: var(--accent);
+}
+
+.consulting-list.compact {
+    gap: 0.7rem;
+}
+
+.consulting-split-layout {
+    gap: 3rem;
+}
+
+.consulting-offer-grid,
+.proof-grid,
+.fit-columns {
+    display: grid;
+    gap: 1rem;
+}
+
+.consulting-offer-grid,
+.proof-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 2rem;
+}
+
+.consulting-offer-card,
+.proof-card,
+.faq-item {
+    padding: 1.5rem;
+}
+
+.consulting-offer-card h3,
+.proof-card h3,
+.fit-columns h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
+}
+
+.consulting-offer-card p,
+.proof-card p,
+.faq-item p {
+    margin-bottom: 0;
+}
+
+.pricing-panel {
+    background: linear-gradient(180deg, rgba(46, 139, 124, 0.08), rgba(255, 255, 255, 0));
+}
+
+.fit-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 1rem;
+}
+
+.faq-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.faq-item h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+@media (max-width: 968px) {
+    .consulting-hero-layout,
+    .consulting-grid-two-up,
+    .consulting-offer-grid,
+    .proof-grid,
+    .fit-columns {
+        grid-template-columns: 1fr;
+    }
+}
