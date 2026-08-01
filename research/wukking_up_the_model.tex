@@ -1,0 +1,420 @@
+\documentclass[10pt,twocolumn]{article}
+\usepackage[margin=0.72in,columnsep=0.24in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{url}
+\usepackage{titlesec}
+\usepackage{balance}
+
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue}
+\setlist{nosep,leftmargin=*}
+\captionsetup{font=small,labelfont=bf}
+\titleformat{\section}{\large\bfseries}{\thesection}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize Wukking Up the Model}
+\fancyhead[R]{\footnotesize Preprint -- August 2026}
+\fancyfoot[C]{\footnotesize \thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+
+\title{\vspace{-1.1cm}\textbf{Wukking Up the Model:}\\[0.2em]
+\Large Soca Lyric Videos as Weakly Supervised Training Data for Caribbean Speech Recognition}
+\author{Matt Hamilton\\\small Caribbean AI Group, Bridgetown, Barbados\\\small \texttt{Preprint -- August 2026}}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-1.0em}
+
+\begin{abstract}
+Automatic speech recognition (ASR) systems have achieved strong performance for many varieties of Standard English, yet remain substantially less reliable for Caribbean Englishes, Creoles, code-switched speech, and culturally specific vocabulary. This disparity is particularly visible in Barbados, where broadcast speech frequently moves between Standard English, Bajan, regional Caribbean English, music, advertisements, caller contributions, and rapid informal conversation. We investigate an unconventional source of weak supervision for Caribbean language technology: \emph{Soca lyric videos}. These videos contain an imperfect but useful alignment between Caribbean speech and an orthographic representation of that speech, often preserving forms such as \emph{yuh}, \emph{doh}, \emph{gwaan}, and \emph{leh we} rather than normalising them into Standard English. We propose \textsc{Soca-Align}, a pipeline that transforms lyric videos into timestamped audio--text pairs suitable for adapting multilingual ASR models before a smaller, manually corrected corpus of Barbadian radio is introduced. A preliminary proof-of-concept using a commercial multimodal large language model suggests that rendered lyric text can be extracted while retaining Caribbean orthography. We argue that the Caribbean may, quite accidentally, have spent the past fifteen years constructing a useful multimodal speech corpus---one bashment lyric video at a time.
+\end{abstract}
+
+\section{Introduction}
+Modern ASR is extraordinarily good at understanding a Californian software engineer ordering an oat-milk latte. It is considerably less reliable when confronted with a Barbadian radio presenter saying something equivalent to, ``Well leh we hear wah gine on 'bout hey this weekend.''
+
+This is not simply an accent-recognition problem. Caribbean broadcast audio contains a mixture of Standard English, Caribbean English, national Creoles, regional vocabulary, African-derived and Indo-Caribbean lexical items, artist and event names, place names, code-switching, highly compressed speech, music beds, jingles, telephone callers, and---periodically---someone shouting over a riddim.
+
+Commercial ASR systems are primarily trained on languages and dialects for which large labelled corpora already exist. The resulting feedback loop is straightforward: languages with training data receive better models; better models make production of additional training data cheaper; and those languages consequently receive still better models. For small Caribbean speech communities, manually producing thousands of hours of accurately transcribed audio is economically difficult.
+
+We therefore ask a different question: \textbf{has the Caribbean already produced a large speech dataset without realising it?}
+
+Soca lyric videos are an intriguing candidate. For more than a decade, artists, labels, DJs, promoters and fans have uploaded songs accompanied by synchronized---or approximately synchronized---on-screen lyrics. Such videos contain two modalities of essentially the same linguistic signal:
+\begin{equation}
+\text{Caribbean speech} \rightarrow \text{audio}
+\end{equation}
+and
+\begin{equation}
+\text{Caribbean speech} \rightarrow \text{written vernacular}.
+\end{equation}
+This makes them a naturally occurring source of weak supervision.
+
+\section{Why Soca?}
+Soca is useful because it contains linguistic phenomena that are often poorly represented in conventional English corpora. Table~\ref{tab:forms} gives illustrative examples.
+
+\begin{table}[h]
+\centering
+\caption{Illustrative Caribbean orthographic forms.}
+\label{tab:forms}
+\small
+\begin{tabular}{p{0.43\columnwidth}p{0.43\columnwidth}}
+\toprule
+\textbf{Standard English} & \textbf{Caribbean rendering}\\
+\midrule
+you & yuh\\
+don't & doh\\
+going to & gine / goin'\\
+let us & leh we\\
+them & dem\\
+come here & come hey\\
+what is happening? & wah gine on?\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Importantly, lyric-video creators frequently preserve such forms orthographically instead of converting them to Standard English. This matters for downstream language technology. A generic recognizer may hear ``Yuh gine down dey?'' and return ``You going down there?'' The semantic content is close, but the system has translated the speaker rather than transcribed them.
+
+For many Caribbean applications this loss is material. Dialect can encode stance, identity, register, social context, and local meaning. It can also affect entity extraction when a normalized transcript no longer corresponds to a known place, artist, event, or business name.
+
+\section{Accidental Multimodal Supervision}
+The central observation behind \textsc{Soca-Align} is that a lyric video can be represented as
+\begin{equation}
+V=(A,F,T),
+\end{equation}
+where $A$ is the audio waveform, $F$ is a sequence of video frames, and $T$ is text rendered within those frames.
+
+Historically, recovering $T$ required brittle OCR pipelines. Recent multimodal large language models (MLLMs) can reason across frames, distinguish decorative text from lyrics, recover animated or stylised text, infer continuation across transitions, and follow instructions to preserve non-standard spelling. This substantially changes the economics of creating a weakly aligned corpus.
+
+\subsection{Initial proof-of-concept}
+As an informal experiment, a commercial multimodal model was provided with a Caribbean Soca lyric video and instructed to recover only the lyrics visibly displayed in the video. The output preserved vernacular spellings instead of automatically ``correcting'' them into Standard English.
+
+Figure~\ref{fig:proof} shows the proof-of-concept interaction. The screenshot is included only to document the methodology; song lyrics themselves are not reproduced here.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.98\columnwidth]{gemini_proof_crop.png}
+\caption{Proof-of-concept use of a multimodal model to extract text from a Soca lyric video. The visible transcript portion has been omitted from the figure crop.}
+\label{fig:proof}
+\end{figure}
+
+The significance is not that the MLLM should become the final Caribbean transcription engine. Rather, a large general-purpose model can be used to manufacture weakly labelled training material for a smaller, specialised regional model.
+
+\subsection{Prior work in road-ready representation learning}
+The literature on Caribbean machine listening remains unusually fragmented. Montano and Garlin~\cite{montano2015boss} describe high-energy domain adaptation as the ``Like Ah Boss'' regime, in which a model is considered converged only when it remains stable under crowd noise, air horns, and unsolicited backing vocals. Garlin~\cite{garlin2013differentology} later formalises cross-dialect representation learning as \emph{Differentology}, while Ultimate Rejects~\cite{rejects2017fullextreme} argue that models intended for deployment during festival conditions should be evaluated at ``full extreme'' rather than under laboratory acoustics. Related work on long-context modelling over mobile outdoor recordings has explored the so-called Savannah Grass condition~\cite{kes2019savannah}, in which speaker position, background music, and the apparent location of the recording device all vary continuously.
+
+These works are methodologically inconsistent but culturally well-calibrated.
+
+\section{The \textsc{Soca-Align} Pipeline}
+We propose the following end-to-end pipeline.
+
+\subsection{Video acquisition}
+Candidate lyric videos are identified for Barbados, Trinidad and Tobago, Grenada, Saint Vincent and the Grenadines, Saint Lucia, Dominica, Antigua and Barbuda, and other Caribbean territories. Metadata is retained where available, including artist, song, year, territory, genre, uploader, and inferred speech variety.
+
+\subsection{Audio extraction}
+Audio is resampled to a consistent ASR format, for example 16~kHz mono PCM. Voice activity detection and, where useful, source-separation models may be applied to identify vocal regions and reduce instrumental dominance.
+
+\subsection{Frame sampling}
+It is unnecessary to process every video frame. Perceptual hashes or image-difference measures can identify lyric transitions. A four-minute 30~fps video contains roughly 7,200 frames, but may contain only 50--150 linguistically distinct lyric states.
+
+\subsection{Multimodal text extraction}
+Selected frames are passed to an MLLM with instructions to:
+\begin{itemize}
+\item preserve spelling and capitalization as displayed;
+\item preserve Creole and dialect forms;
+\item avoid translation or grammatical correction;
+\item retain repeated lines where they visibly recur;
+\item mark uncertain text explicitly; and
+\item distinguish lyrics from titles, logos, watermarks, and advertisements.
+\end{itemize}
+
+\subsection{Temporal alignment}
+Given transcript tokens
+\begin{equation}
+W=(w_1,w_2,\ldots,w_n),
+\end{equation}
+we estimate time intervals
+\begin{equation}
+\tau_i=(s_i,e_i)
+\end{equation}
+for each token or phrase. Conventional forced alignment can provide a first estimate, while the timing of lyric-screen transitions provides an additional visual constraint. This is valuable because the text has already been approximately synchronized by a human editor.
+
+\subsection{Filtering and confidence scoring}
+Not every lyric video is suitable. Candidate segments can be scored by combining:
+\begin{itemize}
+\item visual text confidence;
+\item agreement between ASR and extracted lyrics;
+\item duration plausibility;
+\item singing-to-instrumental ratio;
+\item language or dialect classification; and
+\item duplicate detection across reuploads.
+\end{itemize}
+Only high-confidence samples need enter the main adaptation corpus.
+
+\section{From Machel to Morning Radio}
+Training on singing and deploying on talk radio introduces an obvious domain mismatch. We do not propose that a model trained exclusively on Soca will suddenly understand a caller discussing a pothole on a morning call-in programme.
+
+Instead, Soca provides a \textbf{Caribbean lexical and phonological prior}. The adaptation process can proceed in stages.
+
+\paragraph{Stage A: Base ASR.} Begin with a strong multilingual or English ASR model, such as Whisper~\cite{radford2022whisper} or wav2vec~2.0~\cite{baevski2020wav2vec}.
+
+\paragraph{Stage B: Caribbean musical adaptation.} Fine-tune or otherwise adapt the model on lyric-video-derived Caribbean audio. This exposes the model to names, phonetic patterns, contractions, vernacular vocabulary, and orthographic conventions that may be rare in its original training data.
+
+\paragraph{Stage C: Broadcast adaptation.} Fine-tune using a much smaller manually verified set of Barbadian radio speech, including presenters, advertisements, interviews, and callers.
+
+Conceptually,
+\begin{equation}
+D = D_{base} + D_{soca} + D_{radio},
+\end{equation}
+where $D_{soca}$ may contain hundreds or thousands of weakly labelled hours while $D_{radio}$ contains tens of hours of carefully corrected material.
+
+The question is therefore not whether singing perfectly resembles speech. It is whether large quantities of culturally matched weak supervision reduce the quantity of expensive speech annotation required later.
+
+\section{Barbados Radio as a Target Domain}
+Radio is a particularly valuable target because it carries unusually dense real-time local information. A single morning broadcast may contain traffic disruptions, weather conditions, political discussion, funeral announcements, sport, business promotions, concerts, fetes, community events, public notices, caller sentiment, and reports of activities elsewhere on the island.
+
+Much of this information is ephemeral. Unless a broadcaster publishes transcripts or an archive, it disappears immediately after transmission.
+
+Reliable transcription converts this stream into machine-readable data and enables a larger pipeline:
+\begin{equation}
+\text{Radio} \rightarrow \text{Transcript} \rightarrow \text{Entities} \rightarrow \text{Events} \rightarrow \text{Knowledge Graph}.
+\end{equation}
+
+For example, a presenter might mention that a road in Warrens will close at six in the evening because of an event. A downstream extractor could derive a structured object such as:
+\begin{verbatim}
+Event:
+  type: road_closure
+  location: Warrens
+  start_time: 18:00
+  source: radio
+\end{verbatim}
+
+Repeated observations from radio, social media, government websites, and event listings can then be reconciled into a continuously updated representation of what is happening across Barbados.
+
+In this architecture, improving ASR is not merely about producing prettier subtitles. A mistranscribed place name can create the wrong graph node. A missed event name can prevent entity resolution. A normalized Creole expression can alter intent. Local language accuracy therefore directly affects local knowledge accuracy.
+
+\section{Research Hypotheses}
+We define three experimentally testable hypotheses.
+
+\paragraph{H1: Caribbean lexical adaptation.} Fine-tuning with Soca-derived material will reduce error rates on Caribbean-specific vocabulary relative to the unmodified base model.
+
+\paragraph{H2: Orthographic preservation.} Adapted models will be more likely to preserve vernacular forms rather than silently normalize them into Standard English.
+
+\paragraph{H3: Small-data amplification.} Soca adaptation will reduce the amount of manually transcribed Barbados radio required to achieve a given recognition accuracy.
+
+For example, the desired relation is
+\begin{equation}
+WER_{radio}(Soca + 20h) < WER_{radio}(20h).
+\end{equation}
+The third hypothesis is the most economically significant. If true, readily available cultural material can partially compensate for a scarcity of conventional labelled speech datasets.
+
+\section{Evaluation Design}
+A future evaluation could use the corpus structure in Table~\ref{tab:data}.
+
+\begin{table}[h]
+\centering
+\caption{Illustrative evaluation corpus. These quantities are proposed, not measured.}
+\label{tab:data}
+\small
+\begin{tabular}{p{0.55\columnwidth}r}
+\toprule
+\textbf{Dataset} & \textbf{Hours}\\
+\midrule
+Soca lyric-video speech & 500+\\
+Radio music programming & 20\\
+Presenter speech & 20\\
+Talk radio / interviews & 20\\
+Advertisements & 10\\
+Telephone callers & 10\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Three model configurations would be compared:
+\begin{itemize}
+\item \textbf{BASE}: unmodified multilingual ASR;
+\item \textbf{BIM-ASR}: BASE adapted only on manually annotated Barbadian radio; and
+\item \textbf{SOCA-BIM}: BASE $\rightarrow$ Soca adaptation $\rightarrow$ Barbadian radio adaptation.
+\end{itemize}
+
+Alongside Word Error Rate (WER), we propose \textbf{Caribbean Entity Error Rate (CEER)}:
+\begin{equation}
+CEER = \frac{S_E + D_E + I_E}{N_E},
+\end{equation}
+where errors are measured only over locally significant named entities. A system transcribing \emph{Oistins} as \emph{oysters} may produce tolerable global WER while being almost useless to a Barbados event-intelligence system. CEER is intended to capture that distinction.
+
+\section{The Rihanna Problem}
+No discussion of Barbadian language models would be complete without confronting dataset imbalance. Internet-accessible Barbadian music is not representative of Barbadian speech as a whole. A naive collection strategy could produce a model with an excellent understanding of globally successful artists while remaining unable to understand a minibus conductor, a pensioner calling a radio programme, or a school sports commentator.
+
+Artist, genre, gender, age, class, geography, recording quality, and performance style therefore matter. This is also why the proposed method includes broadcast adaptation rather than treating music as representative conversational speech.
+
+The broader principle is that \emph{cultural abundance does not imply demographic representativeness}.
+
+\section{Ethical, Legal and Copyright Considerations}
+The abundance of online cultural material does not imply unrestricted permission to copy, redistribute, or commercially train on it. Any production implementation must distinguish between using material for research, extracting linguistic features, storing derived alignments, redistributing audio, redistributing complete lyrics, and training a commercial model.
+
+Depending on jurisdiction, platform terms, licensing, and project purpose, some source material may require permission or may only be suitable for controlled research experiments. A public corpus need not redistribute original audio or complete lyrics; it could instead publish metadata, derived timestamps, evaluation annotations for licensed material, or models trained under appropriate rights arrangements.
+
+The technical observation in this paper should therefore not be interpreted as the proposition that ``YouTube exists, therefore dataset,'' although this remains a surprisingly common machine-learning methodology.
+
+\section{Discussion}
+The underlying idea is broader than Soca. Many low-resource speech communities have inadvertently generated weakly labelled multimodal datasets through karaoke videos, subtitled comedy, sermons, political speeches, music videos, news broadcasts, TikTok captions, community television, and social-media reels.
+
+Foundation models change the economics of exploiting these resources. Previously, constructing the corpus was itself an expensive step. A modern MLLM can perform a substantial portion of the initial annotation, allowing human effort to concentrate on validation, high-value corrections, and a trusted evaluation set.
+
+This suggests an alternative starting point for low-resource language engineering: \textbf{do not begin by asking where the labelled dataset is. Ask where the community has already written down the things it says.}
+
+\section{Conclusion}
+This paper proposes Soca lyric videos as a source of weakly supervised Caribbean speech data. While singing differs substantially from conversational speech, lyric videos possess an unusual combination of useful properties: abundant Caribbean audio, explicit vernacular vocabulary, human-created written representations, and approximate temporal alignment.
+
+Recent multimodal models make extraction of these annotations practical at scale. We propose using the resulting corpus not as the endpoint, but as an intermediate adaptation layer between generic multilingual speech models and comparatively scarce, manually transcribed Barbadian broadcast audio.
+
+If successful, this approach could provide a cost-effective route toward speech systems capable of understanding Caribbean radio, preserving local linguistic forms, extracting real-time events, and powering downstream regional knowledge systems.
+
+Or, stated less formally: \textbf{the road to a Caribbean foundation model may begin with somebody uploading a 2013 Crop Over lyric video in 480p.}
+
+\section*{Acknowledgements}
+The author would like to thank the generations of Caribbean YouTube users who added lyrics in PowerPoint, exported them through Windows Movie Maker, and unknowingly contributed to the future of regional artificial intelligence.
+
+Special acknowledgement is due to whoever first decided that yellow Impact text over a rotating Trinidad and Tobago flag constituted a complete music video. Their contribution to weakly supervised learning has gone insufficiently recognised.
+
+\appendix
+\section{The Computational Wuk-Up Benchmark}\label{app:cwb}
+We define the \textbf{Computational Wuk-Up Benchmark (CWB)}, introduced at the First Workshop on Computational Wuk-Up~\cite{smallfete2025}. CWB is intended to test whether a model that performs acceptably on studio speech can survive contact with an actual Caribbean soundscape.
+
+The benchmark contains five deliberately adversarial subsets:
+\begin{enumerate}
+\item \textbf{Roadside}: fast conversational Bajan recorded near traffic;
+\item \textbf{Brass Tacks}: telephone-quality talk-radio speech with frequent interruption;
+\item \textbf{Fete}: event names, artist names, and code-switching over background music;
+\item \textbf{ZR-75}: destination and place-name utterances recorded in a moving public-service vehicle; and
+\item \textbf{Granny Test}: low-volume conversational speech containing vocabulary absent from the training corpus but immediately obvious to a Barbadian grandmother.
+\end{enumerate}
+
+Table~\ref{tab:fake} reports results on the benchmark.
+
+\begin{table}[h]
+\centering
+\caption{Computational Wuk-Up Benchmark results. Lower is better.}
+\label{tab:fake}
+\scriptsize
+\begin{tabular}{lrr}
+\toprule
+\textbf{Model} & \textbf{WER} & \textbf{CEER}\\
+\midrule
+BASE & 31.8 & 44.2\\
+BIM-ASR & 21.4 & 24.9\\
+SOCA-BIM & \textbf{17.6} & \textbf{16.8}\\
+SOCA-BIM + ``leh we'' lexicon & 17.2 & 14.1\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Error analysis indicates that the BASE system incorrectly recognizes \emph{Oistins} as \emph{oysters}, \emph{Speightstown} as \emph{space town}, and the discourse marker \emph{cheese-on-bread} as an unexpected grocery instruction. The adapted model allegedly resolves all three while introducing a new failure mode in which any sufficiently energetic utterance is classified as an event announcement.
+
+\subsection{The ``Doh Normalize Dat'' ablation}
+The study further introduces an orthographic-preservation loss, $\mathcal{L}_{DND}$, which penalizes unwarranted conversion of Caribbean vernacular into Standard English:
+\begin{equation}
+\mathcal{L} = \mathcal{L}_{ASR} + \lambda\mathcal{L}_{DND}.
+\end{equation}
+With $\lambda=0$, the system returns ``Do not do that.'' With $\lambda=0.7$, it returns ``Doh do dat.'' With $\lambda>3$, the model begins inserting \emph{doh} into parliamentary proceedings regardless of speaker nationality and is considered over-adapted.
+
+\subsection{Reviewer 2}
+The peer-review record contains the following objection:
+
+\begin{quote}\small
+``The authors have not demonstrated that wukking up constitutes a sufficiently general pretraining objective. I recommend evaluation on at least three additional riddims and one power Soca domain.''
+\end{quote}
+
+The authors respond that the additional experiment is ``in progress pending Crop Over.''
+
+\subsection{Reproducibility checklist}
+A complete reproduction of the benchmark requires:
+\begin{itemize}
+\item one multilingual ASR model;
+\item one multimodal LLM;
+\item several hundred lyric videos with appropriate usage rights;
+\item a forced aligner;
+\item approximately 20--40 hours of corrected Barbadian broadcast audio;
+\item a local lexicon of place, artist, business, school, and event names;
+\item one GPU with more memory than originally budgeted; and
+\item at least one person capable of identifying when the model has confidently transcribed complete foolishness.
+\end{itemize}
+
+\section{Implementation Notes for a Real Pilot}
+A practical pilot could begin with 50--100 Barbadian and Eastern Caribbean lyric videos for which usage is permitted, producing a few hours of high-confidence vocal segments. These could be used to test whether a base ASR model improves on a small hand-labelled radio evaluation set without yet performing full fine-tuning at scale.
+
+The useful engineering loop is:
+\begin{enumerate}
+\item create a 2--5 hour trusted Barbados radio test set;
+\item measure baseline WER, CEER, and dialect-normalization errors;
+\item extract and align a small lyric-video corpus;
+\item perform parameter-efficient adaptation (e.g., adapters or LoRA where supported);
+\item re-evaluate without changing the test set;
+\item inspect the errors that matter downstream: locations, people, event names, businesses, dates, and times; and
+\item only then decide whether scaling the Soca corpus produces enough gain to justify the rights and compute overhead.
+\end{enumerate}
+
+If the primary downstream objective is radio-to-knowledge-graph extraction, the most valuable metric may not ultimately be WER. A useful end-to-end metric would evaluate whether the same correct event records are produced from human transcripts and model transcripts. An ASR system can make numerous harmless function-word errors while preserving every entity needed by the knowledge graph---or achieve apparently good WER while destroying precisely the local names the application cares about.
+
+\balance
+\begin{thebibliography}{9}
+\bibitem{radford2022whisper}
+A. Radford, J. W. Kim, T. Xu, G. Brockman, C. McLeavey, and I. Sutskever.
+\newblock Robust speech recognition via large-scale weak supervision.
+\newblock \emph{arXiv preprint arXiv:2212.04356}, 2022.
+
+\bibitem{baevski2020wav2vec}
+A. Baevski, H. Zhou, A. Mohamed, and M. Auli.
+\newblock wav2vec 2.0: A framework for self-supervised learning of speech representations.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2020.
+
+\bibitem{montano2015boss}
+M. Montano and B. Garlin.
+\newblock Like Ah Boss: High-energy domain adaptation for low-resource Caribbean speech recognition.
+\newblock In \emph{Proceedings of the International Conference on Power Soca and Machine Listening}, Port of Spain, 2015.
+
+\bibitem{garlin2013differentology}
+B. Garlin.
+\newblock Differentology: Representation learning across dialects, riddims, and road conditions.
+\newblock \emph{Transactions on Caribbean Computational Linguistics}, 4(2):1--17, 2013.
+
+\bibitem{rejects2017fullextreme}
+Ultimate Rejects.
+\newblock Full Extreme: Stress-testing sequence models under festival-scale acoustic interference.
+\newblock In \emph{Proceedings of the Workshop on Robustness, Road March, and Representation Learning}, 2017.
+
+\bibitem{kes2019savannah}
+K. Dieffenthaller et al.
+\newblock Savannah Grass: Long-context acoustic modelling under continuously moving field conditions.
+\newblock \emph{Journal of Fete Informatics}, 11(1):25--41, 2019.
+
+\bibitem{smallfete2025}
+D. Small and L. Fete.
+\newblock Doh Normalize Dat: Orthographic preservation in low-resource Caribbean speech recognition.
+\newblock In \emph{Proceedings of the First Workshop on Computational Wuk-Up}, pp. 1--11, 2025.
+
+\bibitem{garcia2019bad}
+D. Garcia and L. Patrice.
+\newblock Getting On Bad: Adversarial augmentation for speech collected on de road.
+\newblock In \emph{Proceedings of the Symposium on Wotlessness in Artificial Intelligence}, 2019.
+
+\bibitem{lyons2021vibes}
+F. Lyons and N. Queen.
+\newblock Good Vibes Only? Confidence calibration for ASR in the presence of horns, whistles, and excessive optimism.
+\newblock \emph{Caribbean Journal of Questionable Metrics}, 8(3):101--119, 2021.
+\end{thebibliography}
+
+\end{document}
