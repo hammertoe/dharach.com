@@ -407,6 +407,22 @@
             text-decoration: underline;
         }
 
+        .project-secondary-link {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-light);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-top: 0.25rem;
+        }
+
+        .project-secondary-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
         /* Split Sections (Thesis & About) */
         .split-layout {
             display: grid;
