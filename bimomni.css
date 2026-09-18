@@ -1,0 +1,344 @@
+.bimomni-hero {
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+}
+
+.bimomni-hero-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.9fr);
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.bimomni-hero-copy h1 {
+    font-family: "Georgia", serif;
+    font-size: clamp(2.3rem, 5vw, 3.8rem);
+    line-height: 1.08;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+.bimomni-hero-copy h1 .highlight {
+    color: var(--accent);
+    font-style: italic;
+}
+
+.bimomni-intro {
+    font-size: 1.15rem;
+}
+
+.bimomni-hero-figure {
+    background-color: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 0.75rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+}
+
+.bimomni-hero-figure img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+}
+
+.bimomni-hero-figure figcaption {
+    margin-top: 0.5rem;
+    padding: 0 0.25rem 0.25rem;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    text-align: center;
+}
+
+/* Stats strip beneath the hero */
+.bimomni-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 2.5rem;
+}
+
+.bimomni-stat {
+    background-color: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.bimomni-stat-value {
+    font-family: "Georgia", serif;
+    font-size: 1.75rem;
+    color: var(--accent);
+    line-height: 1.1;
+    margin-bottom: 0.25rem;
+}
+
+.bimomni-stat-label {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+/* Generic panels + grid (reused for What it is, Evaluation, etc.) */
+.bimomni-panel,
+.bimomni-sources-card,
+.bimomni-video-card,
+.bimomni-placeholder-card,
+.bimomni-provenance-card {
+    background-color: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.bimomni-panel {
+    padding: 1.75rem;
+}
+
+.bimomni-panel h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+}
+
+.bimomni-panel p {
+    margin-bottom: 0;
+}
+
+.bimomni-two-up {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+/* Evaluation table */
+.bimomni-eval-figure {
+    background: linear-gradient(180deg, rgba(46, 139, 124, 0.06), rgba(255, 255, 255, 0));
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+}
+
+.bimomni-eval-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    background-color: #fff;
+    border: 1px solid var(--border);
+}
+
+.bimomni-eval-figure figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.bimomni-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background-color: var(--bg-alt);
+}
+
+.bimomni-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.bimomni-table thead th {
+    background-color: rgba(46, 139, 124, 0.08);
+    color: var(--text-main);
+    text-align: left;
+    padding: 0.85rem 1rem;
+    font-weight: 700;
+    border-bottom: 1px solid var(--border);
+}
+
+.bimomni-table tbody td,
+.bimomni-table tbody th {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    vertical-align: top;
+}
+
+.bimomni-table tbody tr:last-child td,
+.bimomni-table tbody tr:last-child th {
+    border-bottom: none;
+}
+
+.bimomni-table tbody th {
+    color: var(--text-main);
+    font-weight: 600;
+    text-align: left;
+    background-color: rgba(46, 139, 124, 0.04);
+    width: 22%;
+}
+
+.bimomni-table .col-win {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Proper-noun table (uses a different highlight colour for the winner column) */
+.bimomni-noun-table td.bimomni-noun-correct {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Video + slides cards (responsive 16:9 embed wrapper) */
+.bimomni-video-card,
+.bimomni-placeholder-card {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.bimomni-video-card h3,
+.bimomni-placeholder-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.bimomni-video-card p,
+.bimomni-placeholder-card p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+}
+
+.video-embed-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #0f172a;
+    border: 1px solid var(--border);
+}
+
+.video-embed-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.video-embed-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    padding: 1rem;
+    gap: 0.5rem;
+}
+
+.video-embed-placeholder strong {
+    font-size: 1.05rem;
+}
+
+.video-embed-placeholder span {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.video-embed-placeholder .icon {
+    font-size: 2rem;
+    opacity: 0.7;
+}
+
+.bimomni-link-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    align-items: center;
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.bimomni-link-row a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.bimomni-link-row a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+.bimomni-link-row .sep {
+    color: var(--border);
+}
+
+/* Provenance card list */
+.bimomni-provenance-card {
+    padding: 1.75rem;
+}
+
+.bimomni-provenance-list {
+    list-style: none;
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.bimomni-provenance-list li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.bimomni-provenance-list li .prov-label {
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+    min-width: 130px;
+}
+
+.bimomni-provenance-list li a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.bimomni-provenance-list li a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+@media (max-width: 968px) {
+    .bimomni-hero-layout,
+    .bimomni-two-up {
+        grid-template-columns: 1fr;
+    }
+
+    .bimomni-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bimomni-provenance-list li {
+        flex-direction: column;
+        gap: 0.15rem;
+    }
+
+    .bimomni-provenance-list li .prov-label {
+        min-width: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .bimomni-stats {
+        grid-template-columns: 1fr;
+    }
+}

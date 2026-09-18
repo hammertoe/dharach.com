@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BimOmni | A Barbados-adapted multimodal model | Matt Hamilton</title>
+    <meta name="description" content="BimOmni is a Barbados-adapted multimodal model. A LoRA-tuned Qwen3-Omni that finally hears Bajan proper nouns right, published as part of Future Caribbean and Pulse.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://dharach.com/bimomni.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Dharach">
+    <meta property="og:locale" content="en_BB">
+    <meta property="og:title" content="BimOmni | A Barbados-adapted multimodal model | Matt Hamilton">
+    <meta property="og:description" content="A Barbados-adapted Qwen3-Omni: +13.3 pp on a 60-probe Barbados knowledge test, 10/10 Barbados proper nouns, published openly on the Hugging Face Hub.">
+    <meta property="og:url" content="https://dharach.com/bimomni.html">
+    <meta property="og:image" content="https://dharach.com/bimomni-screenshot.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@hammertoe">
+    <meta name="twitter:title" content="BimOmni | A Barbados-adapted multimodal model | Matt Hamilton">
+    <meta name="twitter:description" content="A Barbados-adapted Qwen3-Omni: +13.3 pp on a 60-probe Barbados knowledge test, 10/10 Barbados proper nouns, published openly on the Hugging Face Hub.">
+    <meta name="twitter:image" content="https://dharach.com/bimomni-screenshot.webp">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "name": "Matt Hamilton",
+          "url": "https://dharach.com/",
+          "jobTitle": "Full-Stack Developer",
+          "sameAs": [
+            "https://twitter.com/hammertoe",
+            "https://linkedin.com/in/in/matthamilton77/",
+            "https://github.com/hammertoe"
+          ]
+        },
+        {
+          "@type": "SoftwareSourceCode",
+          "name": "BimOmni 30B-A3B",
+          "author": {
+            "@type": "Person",
+            "name": "Matt Hamilton"
+          },
+          "url": "https://huggingface.co/hammertoe/BimOmni-30B-A3B",
+          "description": "Barbados-adapted multimodal model built by domain-adaptive pretraining of Qwen3-Omni-30B-A3B-Instruct on the Barbados Advocate newspaper archive.",
+          "license": "https://www.apache.org/licenses/LICENSE-2.0",
+          "isPartOf": {
+            "@type": "Project",
+            "name": "Pulse / Future Caribbean",
+            "url": "https://pulsebarbados.com/"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="site-shared.css">
+    <link rel="stylesheet" href="bimomni.css">
+
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">Matt Hamilton</a>
+        <div class="nav-links">
+            <a href="index.html#whats-running">Projects</a>
+            <a href="index.html#thesis">Thesis</a>
+            <a href="index.html#about">About</a>
+            <a href="consulting.html">Consulting</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="section bimomni-hero">
+            <div class="container bimomni-hero-layout">
+                <div class="bimomni-hero-copy">
+                    <span class="eyebrow">BimOmni · Barbados-adapted multimodal model</span>
+                    <h1>BimOmni hears Barbados <span class="highlight">properly.</span></h1>
+                    <p class="bimomni-intro">A small LoRA on top of Qwen3-Omni-30B-A3B-Instruct, trained on ten years of the <em>Barbados Advocate</em>. Published openly on the Hugging Face Hub as a fused bf16 checkpoint and a 4-bit MLX snapshot that runs on a MacBook.</p>
+                    <div class="hero-ctas">
+                        <a class="cta-button" href="https://huggingface.co/hammertoe/BimOmni-30B-A3B" target="_blank" rel="noopener">
+                            View on Hugging Face
+                        </a>
+                        <a class="cta-button secondary" href="https://huggingface.co/hammertoe/BimOmni-30B-A3B" target="_blank" rel="noopener">
+                            Read the model card
+                        </a>
+                    </div>
+                </div>
+                <figure class="bimomni-hero-figure">
+                    <img src="bimomni-screenshot.webp" alt="The BimOmni Barbados fine-tune Space on Hugging Face, comparing Whisper-large-v3, Qwen3-Omni (base) and BimOmni fine-tune transcriptions of the same Barbados audio clip.">
+                    <figcaption>The Hub Space · Whisper vs Qwen3-Omni vs BimOmni on a Barbados clip.</figcaption>
+                </figure>
+            </div>
+
+            <div class="container">
+                <div class="bimomni-stats">
+                    <div class="bimomni-stat">
+                        <div class="bimomni-stat-value">+13.3 pp</div>
+                        <div class="bimomni-stat-label">on the 60-probe Barbados knowledge test</div>
+                    </div>
+                    <div class="bimomni-stat">
+                        <div class="bimomni-stat-value">10 / 10</div>
+                        <div class="bimomni-stat-label">Barbados proper nouns, vs 2–3 for the base model</div>
+                    </div>
+                    <div class="bimomni-stat">
+                        <div class="bimomni-stat-value">1,624 / 1,624</div>
+                        <div class="bimomni-stat-label">optimiser steps, on a single rented H200</div>
+                    </div>
+                    <div class="bimomni-stat">
+                        <div class="bimomni-stat-value">bf16 + 4-bit MLX</div>
+                        <div class="bimomni-stat-label">fused snapshot and a MacBook-friendly MLX build</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section bg-white">
+            <div class="container split-layout">
+                <div class="split-sidebar">
+                    <h3>The model</h3>
+                </div>
+                <div class="split-content">
+                    <h2>A reproducible template, not a finished product</h2>
+                    <p>BimOmni is one part of <a href="https://pulsebarbados.com" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;">Pulse</a>, a public-signal intelligence system for Barbados built during the <a href="https://futurecaribbean.com/" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;">Future Caribbean</a> buildathon. Pulse ingests fragmented social, broadcast and news signals and resolves them into a graph of sources, places, events, people and communities. The island-wide product is live at pulsebarbados.com.</p>
+
+                    <p>The model itself is not tied to Pulse. It can be used independently for Caribbean-domain transcription, information extraction, search, summarisation, research and other multimodal applications. It is a research artefact built during a 21-day buildathon, not a commercial product — treat its outputs as a starting point for human review rather than as ground truth.</p>
+
+                    <p>What it is, concretely: a parameter-efficient LoRA on Qwen3-Omni's text-only "Thinker", trained on roughly 51.6 million tokens of cleaned Barbados newspaper text. The audio and visual encoders are frozen. The model is better at choosing between plausible outputs given ambiguous audio — not at hearing the audio itself.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container split-layout">
+                <div class="split-sidebar">
+                    <h3>Evaluation</h3>
+                </div>
+                <div class="split-content">
+                    <h2>Three tracks, three answers, no theatrical claims</h2>
+                    <p>BimOmni was scored on three independent tracks. The headline number is honest and small: it is a research artefact, not AGI, and the eval sets are deliberately tiny. Reproduction details and exact scores live in the <a href="https://huggingface.co/hammertoe/BimOmni-30B-A3B" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600;">model card</a>.</p>
+
+                    <figure class="bimomni-eval-figure" style="margin: 1.5rem 0;">
+                        <img src="bimomni-eval-chart.webp" alt="Bar chart: Qwen3-Omni base 61.7%, attention-only LoRA 55.0%, attention+MLP/MoE LoRA 70.0%, full schedule 75.0%.">
+                        <figcaption>60-probe Barbados knowledge test, run on the same 4-bit MLX stack. Reproducible to zero percentage points.</figcaption>
+                    </figure>
+
+                    <div class="bimomni-table-wrap">
+                        <table class="bimomni-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Track</th>
+                                    <th scope="col">Qwen3-Omni base</th>
+                                    <th scope="col">BimOmni</th>
+                                    <th scope="col">Note</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Barbados knowledge (60 probes)</th>
+                                    <td>61.7%</td>
+                                    <td class="col-win">75.0%</td>
+                                    <td>+13.3 pp overall</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Local (20 well-known probes)</th>
+                                    <td>55.0%</td>
+                                    <td class="col-win">70.0%</td>
+                                    <td>+15.0 pp</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Rare local (20 niche probes)</th>
+                                    <td>40.0%</td>
+                                    <td class="col-win">60.0%</td>
+                                    <td>+20.0 pp</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">General controls (20 probes)</th>
+                                    <td>90.0%</td>
+                                    <td class="col-win">95.0%</td>
+                                    <td>+5.0 pp</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section bg-white">
+            <div class="container split-layout">
+                <div class="split-sidebar">
+                    <h3>Proper nouns</h3>
+                </div>
+                <div class="split-content">
+                    <h2>The concrete example worth quoting</h2>
+                    <p>The clearest signal is the proper-noun test. Whisper transcribed <em>Carlisle Bay</em> as "Carlyle Bay" and <em>Oistins Fish Fry</em> as "Oistin's Fish Fry". BimOmni transcribed all ten local proper nouns correctly, against two or three for the unadapted baselines.</p>
+
+                    <div class="bimomni-table-wrap" style="margin-top: 1.5rem;">
+                        <table class="bimomni-table bimomni-noun-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Reference</th>
+                                    <th scope="col">Whisper</th>
+                                    <th scope="col">Qwen3-Omni</th>
+                                    <th scope="col">BimOmni</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Worthing Square</th>
+                                    <td>Wooding Square</td>
+                                    <td>Willing Square</td>
+                                    <td class="bimomni-noun-correct">Worthing Square</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Chefette</th>
+                                    <td>Shafet</td>
+                                    <td class="bimomni-noun-correct">Chefette</td>
+                                    <td class="bimomni-noun-correct">Chefette</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Richard Haynes</th>
+                                    <td>Richard Hines</td>
+                                    <td>Richard Hinds</td>
+                                    <td class="bimomni-noun-correct">Richard Haynes</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Q.P. Bistro</th>
+                                    <td>Kupi Bistro</td>
+                                    <td>QPB Bistro</td>
+                                    <td class="bimomni-noun-correct">Q.P. Bistro</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Oistins Fish Fry</th>
+                                    <td>Oistin's Fish Fry</td>
+                                    <td>Oyston's Fish Fry</td>
+                                    <td class="bimomni-noun-correct">Oistins Fish Fry</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Puddin' and Souse</th>
+                                    <td>putting on south</td>
+                                    <td>Puddin' and Sauce</td>
+                                    <td class="bimomni-noun-correct">Puddin' and Souse</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Farley Hill</th>
+                                    <td class="bimomni-noun-correct">Farley Hill</td>
+                                    <td>Carlisle Hill</td>
+                                    <td class="bimomni-noun-correct">Farley Hill</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Animal Flower Cave</th>
+                                    <td class="bimomni-noun-correct">Animal Flower Cave</td>
+                                    <td>Animaux Flower Cave</td>
+                                    <td class="bimomni-noun-correct">Animal Flower Cave</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Carlisle Bay</th>
+                                    <td>Carlyle Bay</td>
+                                    <td class="bimomni-noun-correct">Carlisle Bay</td>
+                                    <td class="bimomni-noun-correct">Carlisle Bay</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Champers</th>
+                                    <td>Champas</td>
+                                    <td class="bimomni-noun-correct">Champers</td>
+                                    <td class="bimomni-noun-correct">Champers</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p style="margin-top: 1.5rem; font-size: 0.95rem;">These ten examples were selected to examine local proper-noun handling. They are not a complete word-error-rate benchmark and the two-video comparison should not be read as a general ranking of transcription systems. Whisper remained substantially faster on both samples.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===========================================================
+             TALK SECTION COMMENTED OUT — re-enable after UWI Sustainable
+             Futures 2026 talk on 17–18 September. Drop the slides PDF
+             into the dharach.com root as bimomni-talk-slides.pdf, paste
+             the YouTube recording ID into the iframe, then remove the
+             HTML comment markers around this block to bring it back.
+             ===========================================================
+
+        <section id="talk" class="section">
+            <div class="container split-layout">
+                <div class="split-sidebar">
+                    <h3>UWI talk</h3>
+                </div>
+                <div class="split-content">
+                    <h2>Wukking Up the Model</h2>
+                    <p style="font-size: 1.05rem; color: var(--text-light); margin-bottom: 1.5rem;">
+                        <strong style="color: var(--text-main);">ONE-UWI Sustainable Futures Open Virtual Conference 2026</strong><br>
+                        Digital and Connected Futures track · 17–18 September 2026
+                    </p>
+
+                    <p>The talk opens as a confession: the Wukking Up the Model preprint was a ChatGPT parody written in an afternoon, but the idea inside it — Soca lyric videos as weakly supervised Caribbean speech data, with the vernacular preserved — was worth testing seriously. BimOmni is what happened.</p>
+
+                    <div class="bimomni-two-up" style="margin-top: 2rem;">
+                        <div class="bimomni-placeholder-card">
+                            <h3>Talk slides</h3>
+                            <p>The conference-template PDF will land here after the session on 17–18 September. If you want to read the argument in writing first, the related preprint lives at <a href="research/wukking_up_the_model.pdf" style="color: var(--accent); font-weight: 600;">/research/wukking_up_the_model.pdf</a>.</p>
+                            <div class="bimomni-link-row">
+                                <span style="color: var(--text-light); font-size: 0.85rem;">Slides PDF coming after the talk</span>
+                            </div>
+                        </div>
+
+                        <div class="bimomni-video-card">
+                            <h3>Talk recording</h3>
+                            <p>YouTube embed lands here once the recording is published.</p>
+                            <div class="video-embed-wrap">
+                                <div class="video-embed-placeholder">
+                                    <span class="icon">▶</span>
+                                    <strong>Talk recording</strong>
+                                    <span>YouTube embed lands here after 17–18 September 2026</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        =========================================================== -->
+
+        <section class="section bg-white">
+            <div class="container split-layout">
+                <div class="split-sidebar">
+                    <h3>Interview</h3>
+                </div>
+                <div class="split-content">
+                    <h2>Voice of Barbados · NewsMakers</h2>
+                    <p style="font-size: 1.05rem; color: var(--text-light); margin-bottom: 1.5rem;">
+                        <strong style="color: var(--text-main);">Voice of Barbados 92.9 FM</strong><br>
+                        NewsMakers interview with Matt Hamilton · Dharach
+                    </p>
+
+                    <p>In this <em>NewsMakers</em> conversation on Voice of Barbados 92.9 FM I cover BimOmni end to end: why a frontier model still mishears a Bajan accent, what's missing when you ask a generic assistant for a "faucet" in Barbados, how the <em>Barbados Advocate</em> archive became 51.6 million tokens of training data, and what <em>kadooment</em> and <em>cobbler pot</em> taught a model that off-the-shelf speech recognition had never learnt.</p>
+
+                    <p><em>Yuh Gettin Tru</em> and <em>WeOutside246</em> come up as well — they are the same idea in product form. Island-wide product search across 100+ retailers, and an events aggregator that keeps the Crop Over calendar honest. Both exist because generic search drops you the moment local context matters.</p>
+
+                    <p>I moved to Barbados on the Welcome Stamp in August 2021. BimOmni is what came of living here long enough to know what the assistants were missing.</p>
+
+                    <div class="bimomni-video-card" style="margin-top: 1.5rem;">
+                        <h3>Watch the interview</h3>
+                        <div class="video-embed-wrap">
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/PD_KyPQiVTA"
+                                title="BimOmni: Training an AI to Understand Barbadian Culture, Vocabulary, and Context — Voice of Barbados 92.9 FM NewsMakers"
+                                loading="lazy"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                        </div>
+                        <div class="bimomni-link-row">
+                            <a href="https://youtu.be/PD_KyPQiVTA" target="_blank" rel="noopener">Watch on YouTube →</a>
+                            <span class="sep">·</span>
+                            <a href="https://voiceofbarbados.com" target="_blank" rel="noopener">Voice of Barbados 92.9 FM</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container split-layout">
+                <div class="split-sidebar">
+                    <h3>Provenance</h3>
+                </div>
+                <div class="split-content">
+                    <h2>The artefacts and where to find them</h2>
+                    <p>Everything is published openly. The training corpus is not redistributed — it is drawn from a public Caribbean Digital Library archive, used under research-purpose terms.</p>
+
+                    <div class="bimomni-provenance-card">
+                        <ul class="bimomni-provenance-list">
+                            <li>
+                                <span class="prov-label">System</span>
+                                <span>Built as part of <a href="https://pulsebarbados.com/" target="_blank" rel="noopener">Pulse</a>, during the <a href="https://futurecaribbean.com/" target="_blank" rel="noopener">Future Caribbean</a> buildathon</span>
+                            </li>
+                            <li>
+                                <span class="prov-label">Author</span>
+                                <span><a href="index.html">Matt Hamilton</a> · matt@dharach.com</span>
+                            </li>
+                            <li>
+                                <span class="prov-label">Base model</span>
+                                <span><a href="https://huggingface.co/Qwen/Qwen3-Omni-30B-A3B-Instruct" target="_blank" rel="noopener">Qwen/Qwen3-Omni-30B-A3B-Instruct</a> (Apache-2.0)</span>
+                            </li>
+                            <li>
+                                <span class="prov-label">Fused bf16</span>
+                                <span><a href="https://huggingface.co/hammertoe/BimOmni-30B-A3B" target="_blank" rel="noopener">hammertoe/BimOmni-30B-A3B</a></span>
+                            </li>
+                            <li>
+                                <span class="prov-label">MLX 4-bit</span>
+                                <span><a href="https://huggingface.co/hammertoe/BimOmni-30B-A3B-MLX-4bit" target="_blank" rel="noopener">hammertoe/BimOmni-30B-A3B-MLX-4bit</a></span>
+                            </li>
+                            <li>
+                                <span class="prov-label">LoRA adapter</span>
+                                <span><a href="https://huggingface.co/hammertoe/Qwen3-Omni-30B-A3B-Barbados-LoRA-v4" target="_blank" rel="noopener">hammertoe/Qwen3-Omni-30B-A3B-Barbados-LoRA-v4</a></span>
+                            </li>
+                            <li>
+                                <span class="prov-label">Code</span>
+                                <span>Training, evaluation, fusion, MLX quantisation and chunked-transcription pipelines · private for now; the public release follows the hackathon's data-room rules</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section cta-strip">
+            <div class="container">
+                <div class="cta-panel">
+                    <div>
+                        <h3>Want to ship something real?</h3>
+                        <p>I'm available for consulting on civic tech, useful AI, and digital public infrastructure across the Caribbean and beyond.</p>
+                    </div>
+                    <a href="consulting.html" class="cta-button">See consulting</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h4>Matt Hamilton</h4>
+                <p>Dharach - The Caribbean Lab. Building civic infrastructure in Barbados and beyond.</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://hammertoe.io" target="_blank" rel="noopener">hammertoe.io</a>
+                <a href="https://twitter.com/HammerToe" target="_blank" rel="noopener">Twitter / X</a>
+                <a href="https://www.youtube.com/@matthamilton4053/videos" target="_blank" rel="noopener">YouTube</a>
+                <a href="https://www.linkedin.com/in/matthamilton77/" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Matt Hamilton. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
