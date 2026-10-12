@@ -9,6 +9,7 @@ rsync -avz --delete \
     --exclude='.gitignore' \
     --exclude='AGENTS.md' \
     --exclude='deploy.sh' \
+    --exclude='.opencode' \
     . \
     robyn:/var/www/htdocs/www.dharach.com/
 
