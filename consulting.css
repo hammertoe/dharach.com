@@ -163,7 +163,7 @@
 .offer-label {
     display: inline-block;
     margin-bottom: 0.75rem;
-    color: var(--accent);
+    color: var(--accent-strong);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-size: 0.8rem;
@@ -273,14 +273,14 @@
 .proof-link {
     display: inline-block;
     margin-top: 0.85rem;
-    color: var(--accent);
+    color: var(--accent-strong);
     font-weight: 600;
     font-size: 0.9rem;
     text-decoration: none;
 }
 
 .proof-link:hover {
-    color: var(--accent-hover);
+    color: var(--accent-strong-hover);
     text-decoration: underline;
 }
 

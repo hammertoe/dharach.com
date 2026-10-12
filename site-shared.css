@@ -10,9 +10,11 @@
             --bg-alt: #ffffff;
             --text-main: #1a202c;
             --text-muted: #4a5568;
-            --text-light: #718096;
+            --text-light: #667080;
             --accent: #2e8b7c;
             --accent-hover: #236b5f;
+            --accent-strong: #1f6b5e;
+            --accent-strong-hover: #175348;
             --border: #e2e8f0;
         }
 
@@ -57,7 +59,7 @@
             letter-spacing: 0.05em;
             font-size: 0.85rem;
             font-weight: 600;
-            color: var(--accent);
+            color: var(--accent-strong);
             margin-bottom: 1rem;
         }
 
@@ -65,7 +67,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background-color: var(--accent);
+            background-color: var(--accent-strong);
             color: white;
             padding: 0.875rem 1.5rem;
             border-radius: 6px;
@@ -76,18 +78,18 @@
         }
 
         .cta-button:hover {
-            background-color: var(--accent-hover);
+            background-color: var(--accent-strong-hover);
             transform: translateY(-2px);
         }
 
         .cta-button.secondary {
             background-color: transparent;
-            color: var(--accent);
-            border-color: rgba(46, 139, 124, 0.35);
+            color: var(--accent-strong);
+            border-color: rgba(31, 107, 94, 0.4);
         }
 
         .cta-button.secondary:hover {
-            background-color: rgba(46, 139, 124, 0.08);
+            background-color: rgba(31, 107, 94, 0.08);
             transform: translateY(-2px);
         }
 
@@ -343,7 +345,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            color: var(--accent);
+            color: var(--accent-strong);
             margin-bottom: 0.75rem;
         }
 
@@ -395,7 +397,7 @@
         .project-site-link {
             font-size: 0.85rem;
             font-weight: 600;
-            color: var(--accent);
+            color: var(--accent-strong);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -403,7 +405,7 @@
         }
 
         .project-site-link:hover {
-            color: var(--accent-hover);
+            color: var(--accent-strong-hover);
             text-decoration: underline;
         }
 
@@ -419,7 +421,7 @@
         }
 
         .project-secondary-link:hover {
-            color: var(--accent);
+            color: var(--accent-strong);
             text-decoration: underline;
         }
 
@@ -485,7 +487,7 @@
             max-width: 400px;
         }
 
-        .footer-brand h4 {
+        .footer-brand h3 {
             font-size: 1.25rem;
             margin-bottom: 1rem;
         }
